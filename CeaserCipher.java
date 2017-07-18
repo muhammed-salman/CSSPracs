@@ -10,14 +10,13 @@ class CeaserCipher{
 		cipher="";
 		for(int i=0;i<plaintext.length();i++){
 			int c=plaintext.charAt(i);
-			System.out.println(c);
-			c=(c+key) % 26;
-			if(Character.isUpperCase(c))
-			{
+			if(Character.isUpperCase(c)){
+				c=c+(key % 26);
 				if(c > 'Z')
 					c=c-26;
 			}	
 			else{
+				c=c+(key % 26);
 				if(c > 'z')
 					c=c-26;
 			}
@@ -31,23 +30,23 @@ class CeaserCipher{
 		plaintext="";
 		for(int i=0;i<cipher.length();i++){
 			int c=cipher.charAt(i);
-			c=c-(key % 26);
-			if(Character.isUpperCase(c))
-			{
+			if(Character.isUpperCase(c)|| (c>90 && c<97)){
+				c=c-(key % 26);
 				if(c < 'A')
 					c=c+26;
 			}	
 			else{
+				c=c-(key % 26);
 				if(c < 'a')
 					c=c+26;
 			}
-			
 			plaintext+=(char)c;
 		}	
 		
 		System.out.println(plaintext);
 			
 	}
+	
 	public static void main(String args[]){
 		CeaserCipher c=new CeaserCipher();
 		System.out.println("Enter Plain Text: ");
